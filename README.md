@@ -57,3 +57,59 @@ SELECT Passenger.name from Passenger
 ```sql
 select Company.name from Company
 ```
+
+### 3 Вывести все рейсы, совершенные из Москвы
+
+```sql
+select Trip.* from Trip
+where Trip.town_from = "Moscow"
+```
+
+### 4 Вывести имена людей, которые заканчиваются на "man"
+
+```sql
+SELECT Passenger.name from Passenger
+where Passenger.name like "%man"
+```
+
+### 5 Вывести количество рейсов, совершенных на TU-134
+
+```sql
+select count(Trip.*) as count from Trip
+WHERE plane = "TU-134"
+```
+
+### 6 Какие компании совершали перелеты на Boeing
+```sql
+select DISTINCT Company.name from Company
+join Trip on Company.id = Trip.company
+where Trip.plane = "Boeing"
+```
+
+### 7 Вывести все названия самолётов, на которых можно улететь в Москву (Moscow)
+```sql
+select DISTINCT Trip.plane from Trip
+where Trip.town_to = "Moscow"
+```
+
+### 8 В какие города можно улететь из Парижа (Paris) и сколько времени это займёт?
+```sql
+select Trip.town_to, TIMEDIFF(time_in, time_out) as flight_time from Trip
+where Trip.town_from = "Paris"
+ORDER BY  town_to
+```
+
+### 9 Какие компании организуют перелеты из Владивостока (Vladivostok)?
+```sql
+select Company.name from Company
+join Trip on Company.id = Trip.company
+where Trip.town_from = "Vladivostok"
+```
+
+### 10 Вывести вылеты, совершенные с 10 ч. по 14 ч. 1 января 1900 г.
+```sql
+SELECT Trip.*
+FROM Trip
+where Trip.time_out BETWEEN  '1900-01-01 10:00:00' AND '1900-01-01 14:00:00'
+ORDER BY time_out
+```
