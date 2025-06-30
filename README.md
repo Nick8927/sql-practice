@@ -51,3 +51,9 @@
 SELECT Passenger.name from Passenger
 ```
 
+
+### 2 Вывести названия всеx авиакомпаний
+
+```sql
+select Company.name from Company
+```
